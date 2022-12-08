@@ -2,5 +2,5 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 @login_required
-def home(request):
-    return render(request, 'review/home.html')
+def flux(request):
+    return render(request, 'review/flux.html')
