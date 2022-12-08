@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>LitReview Login</title>
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+
+ <h1> LitReview </h1>
+
+ {% block content %}
+<div class="box-all">
+ <div class="signup">
+    <h2> Inscrivez-vous maintenant ! </h2>
+
+ <p> <button><a href="{% url 'signup' %}"> S'inscrire </a></button></p>
+ </div>
+ <div class="login">
+<h2> Connectez-vous ! </h2>
+
+            <p>{{ message }}</p>
+            <form method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button type="submit" >Se connecter</button>
+            </form>
+ </div>
+</div>
+        {% endblock content %}
+</body>
+<footer>
+    <p> © 2022 LitReview  by Myriam Denizot </p>
+</footer>
+</html>
