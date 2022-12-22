@@ -1,0 +1,18 @@
+
+h2{
+    display: flex;
+    justify-content: center;
+}
+
+.navbase{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+.marge{
+ margin : 30px;
+}

@@ -1,13 +1,21 @@
 {% extends 'review/base.html' %}
 
 {% block content %}
-    <h2>Inscription</h2>
+<h1> LitReview </h1>
+<h2>Inscriver-vous</h2>
+<div class="box-signup">
+
     {% if form.errors %}
         {{ form.errors }}
     {% endif %}
     <form method="post">
         {{ form.as_p }}
         {% csrf_token %}
+        <div class="button">
+        <button class="btn_back"><a href="{% url 'logout' %}">Retourner</a></button>
         <button type="submit" >S’inscrire</button>
+        </div>
+
     </form>
+</div>
 {% endblock content %}

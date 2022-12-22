@@ -1,0 +1,32 @@
+{% extends 'review/base.html' %}
+
+{% block content %}
+
+<div class="card text-center">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Page d'Abonnements </h3>
+    <p class="card-text">C'est ici que vous pourrez trouver ou encore suivre d'autres utilisateurs.</p>
+
+      <form class="row g-3">
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Nom d'utilisateurs</label>
+    <input type="password" class="form-control" id="user" placeholder="Nom d'utilisateur">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Envoyer</button>
+  </div>
+</form>
+
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+
+
+
+
+{% endblock content %}

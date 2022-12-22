@@ -2,10 +2,17 @@
 
 {% block content %}
 
-    <p>Vous êtes connecté sur la page Home !</p>
+<div class="center">
+    <div class="marge">
+        <button type="button" class="btn btn-primary btn-lg">Demander une critique</button>
 
-{%if user.is_authenticated %}
-            <p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
-        {% endif %}
+        </div>
+    <div class="marge">
+    <button type="button" class="btn btn-secondary btn-lg">Créer une critique</button>
+        </div>
+</div>
+
+
+
 
 {% endblock content %}

@@ -19,6 +19,16 @@ h2{
     color: black;
 }
 
+.espace{
+    margin : 30px;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+}
+
+
 p{
     font-family: 'Zen Dots', cursive;
     display: flex;
