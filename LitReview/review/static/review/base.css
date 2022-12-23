@@ -16,3 +16,14 @@ h2{
 .marge{
  margin : 30px;
 }
+
+a{
+    text-decoration: none;
+}
+
+.white{
+    color: white;
+}
+a:hover{
+    color: white;
+}

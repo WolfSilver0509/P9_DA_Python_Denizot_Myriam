@@ -1,21 +1,48 @@
 {% extends 'review/base.html' %}
 
 {% block content %}
-<h1> LitReview </h1>
-<h2>Inscriver-vous</h2>
-<div class="box-signup">
 
+
+<!--<div class="box-signup">-->
+
+<!--    {% if form.errors %}-->
+<!--        {{ form.errors }}-->
+<!--    {% endif %}-->
+<!--    <form method="post">-->
+<!--        {{ form.as_p }}-->
+<!--        {% csrf_token %}-->
+<!--        <div class="button">-->
+<!--        <button class="btn_back"><a href="{% url 'logout' %}">Retourner</a></button>-->
+<!--        <button type="submit" >S’inscrire</button>-->
+<!--        </div>-->
+
+<!--    </form>-->
+
+
+    <div class="card text-center">
+  <div class="card-header">
+
+  </div>
+  <div class="card-body">
+    <h2 class="card-title"> Inscriver-vous</h2>
+    <p class="card-text">Bienvenue sur le site LitReview, notre objectif est de commercialiser un produit permettant à une communauté d'utilisateurs de consulter ou de solliciter une critique de livres à la demande !</p>
     {% if form.errors %}
         {{ form.errors }}
     {% endif %}
     <form method="post">
         {{ form.as_p }}
         {% csrf_token %}
-        <div class="button">
-        <button class="btn_back"><a href="{% url 'logout' %}">Retourner</a></button>
-        <button type="submit" >S’inscrire</button>
+        <div >
+        <button class="btn btn-secondary"><a  class="white" href="{% url 'logout' %}">Retourner</a></button>
+        <button class="btn btn-primary" type="submit" >S’inscrire</button>
         </div>
-
     </form>
+  </div>
+  <div class="card-footer text-muted">
+
+  </div>
+</div>
+
+
 </div>
 {% endblock content %}
