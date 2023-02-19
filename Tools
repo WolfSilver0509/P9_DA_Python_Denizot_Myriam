@@ -1,0 +1,8 @@
+
+Crée un user avec un user et un password
+
+python manage.py shell
+
+from authentification.models import User
+User.objects.create_user(username='Glaxer', password='password')
+

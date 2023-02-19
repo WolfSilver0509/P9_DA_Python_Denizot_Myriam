@@ -26,4 +26,6 @@ urlpatterns = [
     path('flux/', review.views.flux, name='flux'),
     path('signup/', authentification.views.signup_page, name='signup'),
     path('follow/', review.views.follow, name='follow'),
+    path('create_critique/', review.views.critique_and_photo_upload, name='create_critique'),
+    path('critique/<int:crit_id>', review.views.view_crit, name='view_crit'),
 ]

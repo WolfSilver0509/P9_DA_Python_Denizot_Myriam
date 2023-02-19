@@ -1,0 +1,39 @@
+
+{% extends 'review/base.html' %}
+{% block content %}
+    <h2>Écrire une Critique</h2>
+    <form method="post" enctype="multipart/form-data">
+        {{ crit_Form.as_p }}
+        {{ photo_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Publier</button>
+    </form>
+{% endblock content %}
+
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
+<div class="mb-3">
+  <label for="formFile" class="form-label">Default file input example</label>
+  <input class="form-control" type="file" id="formFile">
+</div>
+
+
+<div class="card">
+  <div class="card-header">
+    Création d'un ticket
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"> - - - - - - - - </h5>
+{#    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
+{#    <a href="#" class="btn btn-primary">Go somewhere</a>#}
+
+
+
+
+
+
+  </div>
+</div>
