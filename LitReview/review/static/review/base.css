@@ -17,6 +17,10 @@ h2{
  margin : 30px;
 }
 
+.marge_card_crit{
+    margin : 60px;
+}
+
 a{
     text-decoration: none;
 }
@@ -25,5 +29,6 @@ a{
     color: white;
 }
 a:hover{
-    color: white;
+    color: grey;
 }
+

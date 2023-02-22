@@ -1,8 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 
 from . import forms
 from .import models
+
+
 @login_required
 def flux(request):
     photos = models.Photo.objects.all()
@@ -45,5 +48,28 @@ def critique_and_photo_upload(request):
 
 @login_required
 def view_crit(request, crit_id):
-    crit = get_object_or_404(models.Critique, id=blog_id)
+    crit = get_object_or_404(models.Critique, id=crit_id)
     return render(request, 'review/view_crit.html', {'crit': crit})
+
+@login_required
+def edit_crit(request, crit_id):
+    crit = get_object_or_404(models.Critique, id=crit_id)
+    edit_crit_form = forms.CritForm(instance=crit)
+    delete_crit_form = forms.DeleteCritForm(instance=crit)
+    if request.method == 'POST':
+        edit_form = forms.CritForm(request.POST, instance=crit)
+        delete_form = forms.DeleteCritForm(request.POST, instance=crit)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('flux')
+        if delete_form.is_valid():
+            crit.delete()
+            return redirect('flux')
+    else:
+        edit_form = forms.CritForm(instance=crit)
+        delete_form = forms.DeleteCritForm(instance=crit)
+    context = {
+            'edit_form': edit_form,
+            'delete_form': delete_form,
+        }
+    return render(request, 'review/edit_crit.html', context)

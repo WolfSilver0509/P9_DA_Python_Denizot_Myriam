@@ -14,33 +14,37 @@
 
 {#    Card des critiques visuels et critiques textuelles#}
 
-
-    <div class="card text-center">
+ {% for crit in crits %}
+    <div class="card marge_card_crit ">
   <div class="card-header">
-    <h2>Critique</h2>
+    <h2>{{ crit.title }}</h2>
   </div>
-        {% for crit in crits %}
   <div class="card-body">
+      <a href="{% url 'view_crit' crit.id %}">
     <h5 class="card-title">{{ crit.title }}</h5>
+      </a>
     <p class="card-text">{{ crit.content }}</p>
   </div>
+        <a  href="{% url 'edit_crit' crit.id %}" > here </a>
   <div class="card-footer text-muted">
-    -- {{ crit.author }} -- {{ crit.date_created }}
+    -- {{ crit.author }} -- {{ crit.date_created }} --
   </div>
+        </div>
     {% endfor %}
-</div>
 
 
-{#    <div class="grid-container">#}
-{#        {% for crit in crits %}#}
-{#            <div class="post">#}
-{#                <a href="{% url 'view_crit' crit.id %}">#}
-{#                    <h4>Billet : {{ crit.title }}</h4>#}
-{#<!--                    <img src="{{ crit.photo.image.url }}">-->#}
-{#                </a>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
+
+
+    <div class="grid-container">
+        {% for crit in crits %}
+           <div class="post">
+                <a href="{% url 'view_crit' crit.id %}">
+                    <h4>Billet : {{ crit.title }}</h4>
+                    <img src="{{ crit.photo.image.url }}">
+               </a>
+            </div>
+        {% endfor %}
+    </div>
 
 
 

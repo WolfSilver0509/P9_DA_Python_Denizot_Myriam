@@ -1,39 +1,94 @@
-
 {% extends 'review/base.html' %}
 {% block content %}
     <h2>Écrire une Critique</h2>
-    <form method="post" enctype="multipart/form-data">
-        {{ crit_Form.as_p }}
-        {{ photo_form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Publier</button>
-    </form>
-{% endblock content %}
-
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
-
-<div class="mb-3">
-  <label for="formFile" class="form-label">Default file input example</label>
-  <input class="form-control" type="file" id="formFile">
-</div>
+<!--    <form method="post" enctype="multipart/form-data">-->
+<!--        {{ crit_Form.as_p }}-->
+<!--        {{ photo_form.as_p }}-->
+<!--        {% csrf_token %}-->
+<!--        <button type="submit" >Publier</button>-->
+<!--    </form>-->
 
 
-<div class="card">
+<!--<div class="mb-3">-->
+<!--  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>-->
+<!--  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+<!--</div>-->
+
+<!--<div class="mb-3">-->
+<!--  <label for="formFile" class="form-label">Default file input example</label>-->
+<!--  <input class="form-control" type="file" id="formFile">-->
+<!--</div>-->
+
+
+<div class="card marge_card_crit ">
   <div class="card-header">
-    Création d'un ticket
+    Création d'une critique
   </div>
   <div class="card-body">
-    <h5 class="card-title"> - - - - - - - - </h5>
+    <h5 class="card-title"> Livre/Article </h5>
+<!--formulaire titre -->
+      <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Titre : </label>
+    {{ crit_Form.title }}
+          <input type="email" class="form-control" id="exampleFormControlInput1">
+      </div>
+      <!--formulaire description -->
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Déscription de la critique : </label>
+    {{ crit_Form.content }}
+</div>
+      <!--formulaire upload image -->
+      <div class="mb-3">
+  <label for="formFile" class="form-label">Choisir l'image : </label>
+    {{ photo_form.image }}
+  <input class="form-control" type="file" id="formFile">
+</div>
 {#    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
 {#    <a href="#" class="btn btn-primary">Go somewhere</a>#}
+  </div>
+<!--</div>-->
+  <div class="card-body">
+    <h5 class="card-title"> Critique :  </h5>
+      <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Titre de la critique : </label>
+          {{ crit_Form.title }}
+          <p> Note : </p>
 
+          <div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+  <label class="form-check-label" for="inlineCheckbox1"> - 0</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+  <label class="form-check-label" for="inlineCheckbox2"> - 1</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+  <label class="form-check-label" for="inlineCheckbox2"> - 2</label>
+</div>
+          <div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+  <label class="form-check-label" for="inlineCheckbox2"> - 3</label>
+</div>
+          <div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+  <label class="form-check-label" for="inlineCheckbox2"> - 4</label>
+</div>
+          <div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+  <label class="form-check-label" for="inlineCheckbox2"> - 5</label>
+</div>
+                <!--formulaire description -->
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Déscription de la critique : </label>
+    {{ crit_Form.content }}
+</div>
+{#    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
 
-
-
-
-
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="#" class="btn btn-primary">Envoyer</a>
+          </div>
   </div>
 </div>
+
+{% endblock content %}

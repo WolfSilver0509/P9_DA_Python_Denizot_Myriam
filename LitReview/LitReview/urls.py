@@ -28,4 +28,5 @@ urlpatterns = [
     path('follow/', review.views.follow, name='follow'),
     path('create_critique/', review.views.critique_and_photo_upload, name='create_critique'),
     path('critique/<int:crit_id>', review.views.view_crit, name='view_crit'),
+    path('critique/<int:crit_id>/edit', review.views.edit_crit, name='edit_crit'),
 ]
