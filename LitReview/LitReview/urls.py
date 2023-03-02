@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 import authentification.views
 import review.views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -30,3 +32,7 @@ urlpatterns = [
     path('critique/<int:crit_id>', review.views.view_crit, name='view_crit'),
     path('critique/<int:crit_id>/edit', review.views.edit_crit, name='edit_crit'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

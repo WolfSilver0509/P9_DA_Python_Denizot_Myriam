@@ -18,5 +18,5 @@ class DeleteCritForm(forms.ModelForm):
     delete_crit = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
         model = models.Critique
-        fields = ['title', 'content']
+        fields = []
 

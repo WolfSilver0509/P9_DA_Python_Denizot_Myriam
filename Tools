@@ -6,3 +6,10 @@ python manage.py shell
 from authentification.models import User
 User.objects.create_user(username='Glaxer', password='password')
 
+python manage.py collectstatic  - pour les fichiers statiques sert à copier les fichiers statiques dans le dossier static_cdn pour debut à false
+
+Authentification :
+
+Inscription a mettre sur OK - a travailler
+Connexion  valide à tester
+Déconnexion a mettre sur OK
