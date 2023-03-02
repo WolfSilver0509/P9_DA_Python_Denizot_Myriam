@@ -1,28 +1,23 @@
 {% extends 'review/base.html' %}
 {% block content %}
-    <h2>Écrire une Critique</h2>
-<!--    <form method="post" enctype="multipart/form-data">-->
-<!--        {{ crit_Form.as_p }}-->
-<!--        {{ photo_form.as_p }}-->
-<!--        {% csrf_token %}-->
-<!--        <button type="submit" >Publier</button>-->
-<!--    </form>-->
 
-
-<!--<div class="mb-3">-->
-<!--  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>-->
-<!--  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
-<!--</div>-->
-
-<!--<div class="mb-3">-->
-<!--  <label for="formFile" class="form-label">Default file input example</label>-->
-<!--  <input class="form-control" type="file" id="formFile">-->
-<!--</div>-->
-
+    <h2>Modifier la critique</h2>
+    <form method="post">
+        {{ edit_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Sauvegarder</button>
+    </form>
+    <hr>
+    <h3>Supprimer la critique ?</h3>
+    <form method="post">
+        {{ delete_form }}
+        {% csrf_token %}
+        <button type="submit" >Supprimer</button>
+    </form>
 
 <div class="card marge_card_crit ">
   <div class="card-header">
-    Création d'une critique
+    Modification d'une critique
   </div>
   <div class="card-body">
     <h5 class="card-title"> Livre/Article </h5>
@@ -51,7 +46,7 @@
     <h5 class="card-title"> Critique :  </h5>
       <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Titre de la critique : </label>
-          {{ crit_Form.title }}
+          {{ edit_form.title }}
           <p> Note : </p>
 
           <div class="form-check form-check-inline">
@@ -81,8 +76,9 @@
                 <!--formulaire description -->
 <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">Déscription de la critique : </label>
-    {{ crit_Form.content }}
+    {{ edit_form.content }}
 </div>
+          {% csrf_token %}
 {#    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -90,5 +86,7 @@
           </div>
   </div>
 </div>
+
+
 
 {% endblock content %}
