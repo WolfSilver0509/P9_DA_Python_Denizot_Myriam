@@ -41,12 +41,35 @@
         {{ form.errors }}
     {% endif %}
     <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
+<!--        {{ form.as_p }}-->
+
+
+<div class="mb-3 row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Nom d'utilisateur</label>
+    <div class="col-sm-10">
+      {{ form.username}}
+    </div>
+  </div>
+
+<div class="mb-3 row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Mots de passe: </label>
+    <div class="col-sm-10">
+      {{ form.password1}}
+    </div>
+  </div>
+
+        <div class="mb-3 row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Confirmer le mots de passe: </label>
+    <div class="col-sm-10">
+      {{ form.password2}}
+    </div>
+  </div>
+
         <div >
         <button class="btn btn-secondary"><a  class="white" href="{% url 'logout' %}">Retourner</a></button>
         <button class="btn btn-primary" type="submit" >S’inscrire</button>
         </div>
+         {% csrf_token %}
     </form>
   </div>
   <div class="card-footer text-muted">
