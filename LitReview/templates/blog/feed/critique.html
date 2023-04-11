@@ -1,0 +1,37 @@
+
+    <div class="card mb-3">
+        <div class="card-header">
+            {% if post.user == request.user %}
+            <p> Vous avez publié une critique</p>
+        {% else %}
+            <p> {{post.user}} à publié une critique</p>
+        {% endif %}
+            <div class="text-end">
+                {{post.time_created}}
+            </div>
+
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{post.headline}} -
+                {% for star in stars %}
+                {% if star <= post.rating %}
+                <span class="fa fa-star checked"></span>
+                {%else%}
+                <span class="fa fa-star"></span>
+                {%endif%}
+                {% endfor %}
+            </h5>
+            <p class="m-3"> {{ post.body }}</p>
+
+            <div class="card">
+                <div class="card-body">
+                    <h6> Ticket - {{post.ticket.user }} </h6>
+                    <p class="m-3">{{post.ticket.title }}</p>
+                    <p> Description : {{post.ticket.description }}</p>
+                </div>
+                <img src="/media/{{post.ticket.image }}" style="width: 12rem;" class="card-img-bottom m-3" alt="...">
+
+            </div>
+
+        </div>
+    </div>

@@ -1,0 +1,24 @@
+
+    <div class="card mb-3">
+        <div class="card-header">
+                    {% if post.user == request.user %}
+            <p> Vous avez demandé une critique</p>
+        {% else %}
+            <p>{{post.user }} a demandé une critique</p>
+        {% endif %}
+            <div class="text-end">
+                {{post.time_created}}
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3">{{ post.title }}</p>
+                    <p> Description : {{ post.description }}</p>
+                </div>
+                <img src="/media/{{ post.image }}" style="width: 12rem;" class="card-img-bottom m-3" alt="...">
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
+                <a class="btn btn-outline-primary" type="submit"
+                   href="{% url 'creatreview' post.id %}">Créer une critique </a>
+            </div>
+        </div>
+    </div>

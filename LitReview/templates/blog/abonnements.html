@@ -1,0 +1,126 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!--<div class="wrapper">-->
+<!--    <section class="login-container">-->
+<!--            <h2 class="panel-title" >Suivre d'autres utilisateurs</h2>-->
+<!--            <form class="panel-input_username" method="POST">-->
+<!--                {%csrf_token%}-->
+<!--                {{form}}-->
+<!--                <div class="button-container">-->
+<!--                    <button class="default-button" type="submit" value="Suivre">Envoyer</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--            {%if error is not Null%}-->
+<!--                <p class=error>{{error}}</p>-->
+<!--            {%endif%}-->
+<!--            <h3 class="panel-title">Abonnements</h3>-->
+<!--            <h3 class="panel-title">-o-o-o-o-o-o-</h3>-->
+<!--            {% for userfllow in userfllows %}-->
+<!--                <table>-->
+<!--                    <tr>-->
+<!--                        <td class="userflowers_col">{{ userfllow.followed_user }}</td>-->
+<!--                        <td><a type="submit" class="default-button" href="{% url 'desabonnement' userfllow.followed_user %}">Désabonner</a></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            {% endfor %}-->
+<!--            <h3 class="panel-title">Abonnés</h3>-->
+<!--            <h3 class="panel-title">-o-o-o-o-o-o-</h3>-->
+<!--            <table>-->
+<!--                {% for follower in followers %}-->
+<!--                    <tr>-->
+<!--                        <td class="flowers_col">{{ follower.user }}</td>-->
+<!--                    </tr>-->
+<!--                {% endfor %}-->
+<!--            </table>-->
+<!--    </section>-->
+<!--</div>-->
+
+
+<!--Parti Abon-->
+<div class="card text-center m-3">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">Suivre d'autre utilisateurs </h3>
+        <p class="card-text">C'est ici que vous pourrez trouver ou encore suivre d'autres utilisateurs.</p>
+
+        <form class="row g-3 center panel-input_username" method="POST">
+
+            <div class="col-auto">
+                {%csrf_token%}
+                {{form|crispy}}
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Suivre</button>
+            </div>
+        </form>
+        {%if error is not Null%}
+        <p class=error>{{error}}</p>
+        {%endif%}
+
+    </div>
+    <div class="card-footer text-muted">
+
+    </div>
+</div>
+
+<!--Partie liste des users-->
+
+
+<div class="card text-center m-3">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">Abonnements </h3>
+        <p class="card-text">C'est ici que vous pourrez voir les utilisateurs que vous suivez..</p>
+
+        <div class="list-group">
+            {% for userfllow in userfllows %}
+            <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand">{{ userfllow.followed_user }}</a>
+                    <form class="d-flex" role="search">
+                        <a class="btn btn-outline-danger" type="submit"
+                           href="{% url 'desabonnement' userfllow.followed_user %}">Désabonnement</a>
+                    </form>
+                </div>
+            </nav>
+
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+    <div class="card-footer text-muted">
+
+    </div>
+</div>
+
+
+<!--Partie des abbonés -->
+<div class="card text-center m-3">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">Abonnés </h3>
+        <p class="card-text">C'est ici que vous pourrez voir les utilisateurs qui vous suivent</p>
+
+        <div class="list-group">
+            {% for follower in followers %}
+            <a href="#" class="list-group-item list-group-item-action">{{ follower_user }} </a>
+            {% endfor %}
+        </div>
+
+
+    </div>
+    <div class="card-footer text-muted">
+
+    </div>
+</div>
+
+
+{% endblock content %}

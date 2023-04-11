@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="card mb-3">
+        <h2> Crée une critique </h2>
+        <div class="card-header">
+    <p> Vous étes entrain de poster en réponse à  </p>
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3">Ticket - {{ ticket.user }}</p>
+                        <p class = "m-3">{{ ticket.title }}</p>
+                    <p>Description : {{ ticket.description }}</p>
+                </div>
+                <img src="/media/{{ticket.image }}" style="width: 12rem;" class="card-img-bottom m-3" alt="...">
+                </div>
+            <div class="card m-5">
+
+                <h2 class="card-title">Critique</h2>
+                {{ review_form|crispy }}
+                {% csrf_token %}
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

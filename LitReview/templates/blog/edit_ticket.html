@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="card text-center">
+
+    <div class="card-body">
+        <h2 class="card-title">Modifier un ticket</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+
+            {{ ticket_form|crispy }}
+                  {% csrf_token %}
+            {% for ticket in tickets %}
+            <img src="/media/{{ ticket.image }}"  style="width: 12rem;" class="card-img-top" alt="...">
+            {% endfor %}
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary">Modifier</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock content %}

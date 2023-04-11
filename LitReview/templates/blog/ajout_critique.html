@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="card text-center">
+
+    <div class="card-body">
+        <h2 class="card-title">Ajouter une critique</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="encadrement_post_critique">
+                {{ ticket_form|crispy }}
+            </div>
+            <div class="encadrement_post_critique">
+                {{ review_form|crispy }}
+
+            </div>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
+            {% csrf_token %}
+        </form>
+        <p>{{ message }}</p>
+        </section>
+    </div>
+    {% endblock content %}

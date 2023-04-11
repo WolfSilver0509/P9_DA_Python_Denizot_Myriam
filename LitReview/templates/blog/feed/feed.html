@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    <section class=" bouton_haut_feed">
+        <div class="center">
+            <div class="marge">
+                <a class="btn btn-secondary btn-lg" href="{% url 'ajout_tickets' %}"> Demander une critique </a>
+
+            </div>
+            <div class="marge">
+                <a class="btn btn-secondary btn-lg" href="{% url 'ajout_critique' %}"> Crée une critique </a>
+            </div>
+
+        </div>
+
+    </section>
+
+{% for post in posts %}
+    {% if post.content_type == 'TICKET' %}
+        {% include 'blog/feed/ticket.html' %}
+    {% elif post.content_type == 'REVIEW' %}
+        {% include 'blog/feed/critique.html' %}
+    {% endif %}
+{% endfor %}
+
+{% endblock content %}
