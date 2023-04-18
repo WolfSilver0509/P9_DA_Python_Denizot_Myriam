@@ -15,9 +15,9 @@
             <h5 class="card-title">{{post.headline}} -
                 {% for star in stars %}
                 {% if star <= post.rating %}
-                <span class="fa fa-star checked"></span>
+                <span class="fa-solid fa-star"></span>
                 {%else%}
-                <span class="fa fa-star"></span>
+                <span class="fa-regular fa-star"></span>
                 {%endif%}
                 {% endfor %}
             </h5>
