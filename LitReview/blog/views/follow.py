@@ -12,10 +12,12 @@ from authentification.models import User
 def abonnements(request):
     error = ""
     form = Follow_Form()
-    userfllows = UserFollows.objects.filter(user=request.user)
-    followers = UserFollows.objects.filter(followed_user_id=request.user)
+    userfollows = UserFollows.objects.filter(followed_user=request.user)
+    followers = UserFollows.objects.filter(user=request.user)
+    print(userfollows)
+    print(followers)
     context = {
-        'userfllows': userfllows,
+        'userfollows': userfollows,
         "followers": followers,
         "form": form,
         "error": error
@@ -36,9 +38,9 @@ def abonnements(request):
                     context.update({"error": error})
                     return render(request, 'blog/abonnements.html', context=context)
                 try:
-                    instance = UserFollows(user=request.user, followed_user=found_user)
+                    instance = UserFollows(user=found_user, followed_user=request.user)
                     instance.save()
-                    followers = UserFollows.objects.filter(followed_user_id=request.user)
+                    followers = UserFollows.objects.filter(user=request.user)
                     context.update({"followers": followers})
                     return redirect("abonnements")
 
@@ -52,6 +54,6 @@ def abonnements(request):
 @login_required
 def desabonnement(request, pk):
     userTodel = User.objects.get(username=pk)
-    userFollowstoDel = UserFollows.objects.get(followed_user_id=userTodel.id, user_id=request.user.id)
+    userFollowstoDel = UserFollows.objects.get(user=userTodel, followed_user=request.user)
     userFollowstoDel.delete()
     return redirect("abonnements")

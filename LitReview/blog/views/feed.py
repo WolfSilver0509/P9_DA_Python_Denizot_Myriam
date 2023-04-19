@@ -8,25 +8,33 @@ from django.db import IntegrityError
 from itertools import chain
 from authentification.models import User
 
+from django.db.models import Q
 
 #.filter = filter les éléments sur la bdd
-#Valeur gauche user actuelle baleur droite user du modele
+#Valeur gauche modele valeur droite user qu'on a
 # deux condiiton soit je suis l'auteur soit je suis abbonée à l'auteur du ticket
 #Récupérer la liste des personnes auxquels je suis abbonnées
 # django filter Q = ou
 # django filter _in = dans
 
 def get_users_viewable_reviews(user):
-    reviews = Review.objects.filter(user=user)
+    userfollows = UserFollows.objects.filter(followed_user=user)
+    follow = [userfollow.user.id for userfollow in userfollows]
+    reviews = Review.objects.filter(
+        Q(user=user) | Q(user__id__in = follow)
+    )
     return reviews
 
 def get_users_viewable_tickets(user):
-    tickets = Ticket.objects.filter(user=user)
-
-
+    #Récupération dans une liste des follower qu'on suit
+    userfollows = UserFollows.objects.filter(followed_user=user)
+    follow= [userfollow.user.id for userfollow in userfollows]
+    tickets = Ticket.objects.filter(
+        Q(user=user)| Q(user__id__in = follow)
+    )
+    # user__id__in On utilise les deux __ pour sortie et chercher l'id ,
+    # et on utilise in dans pour verifier si il est dans la liste.
     return tickets
-
-
 
 @login_required
 def feed(request):

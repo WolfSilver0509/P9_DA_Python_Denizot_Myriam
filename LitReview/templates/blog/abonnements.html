@@ -78,13 +78,13 @@
         <p class="card-text">C'est ici que vous pourrez voir les utilisateurs que vous suivez..</p>
 
         <div class="list-group">
-            {% for userfllow in userfllows %}
+            {% for userfollow in userfollows %}
             <nav class="navbar bg-body-tertiary">
                 <div class="container-fluid">
-                    <a class="navbar-brand">{{ userfllow.followed_user }}</a>
+                    <a class="navbar-brand">{{ userfollow.user }}</a>
                     <form class="d-flex" role="search">
                         <a class="btn btn-outline-danger" type="submit"
-                           href="{% url 'desabonnement' userfllow.followed_user %}">Désabonnement</a>
+                           href="{% url 'desabonnement' userfollow.user %}">Désabonnement</a>
                     </form>
                 </div>
             </nav>
@@ -111,7 +111,7 @@
 
         <div class="list-group">
             {% for follower in followers %}
-            <a href="#" class="list-group-item list-group-item-action">{{ follower_user }} </a>
+            <a href="#" class="list-group-item list-group-item-action">{{ follower.follower_user }} </a>
             {% endfor %}
         </div>
 

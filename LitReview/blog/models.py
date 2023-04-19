@@ -24,7 +24,7 @@ class Review(models.Model):
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
 
-
+# A suit B  ( B c'est USER) et (A c'est le followed_user)
 class UserFollows(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
