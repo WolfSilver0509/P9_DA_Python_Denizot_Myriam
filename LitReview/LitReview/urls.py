@@ -27,7 +27,6 @@ urlpatterns = [
     path('', authentification.views.login_page, name='login'),
     path('logout/', authentification.views.logout_user, name='logout'),
     path('signup/', authentification.views.signup_page, name='signup'),
-    path('flux/', blog.views.flux, name='flux'),
     path('creatreview/<int:pk>', blog.views.creatreview, name='creatreview'),
     path('post/', blog.views.post, name='post'),
     path('supp_post/<str:pk>', blog.views.supp_post, name='supp_post'),

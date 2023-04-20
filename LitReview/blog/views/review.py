@@ -47,8 +47,9 @@ def creatreview(request, pk):
 
 @login_required
 def post(request):
-    reviews = Review.objects.filter(user_id=request.user.id)
-    tickets = Ticket.objects.filter(user_id=request.user.id)
+    reviews = Review.objects.filter(user_id=request.user.id).order_by('-time_created')
+    tickets = Ticket.objects.filter(user_id=request.user.id).order_by('-time_created')
+
     return render(request, "blog/post.html", context={'reviews': reviews, 'tickets': tickets, 'stars': range(1, 5+1)})
 
 

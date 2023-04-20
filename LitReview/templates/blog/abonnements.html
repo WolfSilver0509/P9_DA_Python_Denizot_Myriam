@@ -108,14 +108,13 @@
     <div class="card-body">
         <h3 class="card-title">Abonnés </h3>
         <p class="card-text">C'est ici que vous pourrez voir les utilisateurs qui vous suivent</p>
-
-        <div class="list-group">
+        <nav class="navbar bg-body-tertiary">
             {% for follower in followers %}
-            <a href="#" class="list-group-item list-group-item-action">{{ follower.follower_user }} </a>
+            <div class="container-fluid">
+                <a class="navbar-brand">{{ follower.followed_user }}</a>
+            </div>
             {% endfor %}
-        </div>
-
-
+        </nav>
     </div>
     <div class="card-footer text-muted">
 

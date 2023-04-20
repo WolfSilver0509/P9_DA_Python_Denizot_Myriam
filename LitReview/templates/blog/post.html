@@ -3,6 +3,7 @@
 
 <h2 class="m-5">Vos posts : </h2>
 <section>
+    <h2> Critiques </h2>
     {% for review in reviews %}
     <div class="card mb-3">
         <div class="card-header">
@@ -16,9 +17,9 @@
             <h5 class="card-title">{{review.headline}} -
                 {% for star in stars %}
                 {% if star <= review.rating %}
-                <span class="fa fa-star checked"></span>
+                <span class="fa-solid fa-star"></span>
                 {%else%}
-                <span class="fa fa-star"></span>
+                <span class="fa-regular fa-star"></span>
                 {%endif%}
                 {% endfor %}
             </h5>
@@ -44,46 +45,34 @@
 </section>
 
 <section>
+    <h2> Tickets </h2>
     {% for ticket in tickets %}
-    <div class="card mb-3">
+    <div class="card m-3">
         <div class="card-header">
-            Vous avez publié une critiques
+            Vous avez publié un ticket
             <div class="text-end">
                 {{ticket.time_created}}
             </div>
 
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ticket.review.headline}} -
-                {% for star in stars %}
-                {% if star <= review.rating %}
-                <span class="fa fa-star checked"></span>
-                {%else%}
-                <span class="fa fa-star"></span>
-                {%endif%}
-                {% endfor %}
-            </h5>
-            <p class="m-3"> {{ review.body }}</p>
 
-            <div class="card">
-                <div class="card-body">
-                    <h6> Ticket - {{ticket.user }} </h6>
-                    <p class="m-3">{{ticket.title }}</p>
-                    <p> Description : {{ticket.description }}</p>
-                </div>
-                <img src="/media/{{ticket.image }}" style="width: 12rem;" class="card-img-bottom m-3" alt="...">
-
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
-                    <a class="btn btn-outline-primary" type="submit"
-                       href="{% url 'edit_ticket' ticket.id %}">Modifier</a>
-                    <a class="btn btn-outline-danger" type="submit"
-                       href="{% url 'supp_ticket' ticket.id %}">Supprimer</a>
-                </div>
-
-            </div>
-
+            <h6> Ticket - {{ticket.user }}
+                </h6>
+            <p class="m-3">{{ticket.title }} </p>
+            <p> Description : {{ticket.description }}</p>
         </div>
+        <img src="/media/{{ticket.image }}" style="width: 12rem;" class="card-img-bottom m-3" alt="...">
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end m-3">
+            <a class="btn btn-outline-primary" type="submit"
+               href="{% url 'edit_ticket' ticket.id %}">Modifier</a>
+            <a class="btn btn-outline-danger" type="submit"
+               href="{% url 'supp_ticket' ticket.id %}">Supprimer</a>
+        </div>
+
     </div>
+
     {% endfor %}
 </section>
 

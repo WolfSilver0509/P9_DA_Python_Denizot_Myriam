@@ -10,22 +10,34 @@
         <p> Vous étes entrain de poster en réponse à </p>
         <div class="card">
             <div class="card-body">
-                <p class="m-3">Ticket - {{ ticket.user }}</p>
-                <p class="m-3">{{ ticket.title }}</p>
-                <p>Description : {{ ticket.description }}</p>
+
+                <!--                Debut-->
+                <div class="card">
+                    <div class="card-header">
+                        Ticket de {{ ticket.user }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"> Titre : {{ ticket.title }}</h5>
+                        <p class="card-text">Description : {{ ticket.description }}</p>
+                        <img src="/media/{{ticket.image }}" style="width: 12rem;" class="card-img-bottom m-3" alt="...">
+
+                    </div>
+                </div>
+                <!--                Fin-->
+
             </div>
-            <img src="/media/{{ticket.image }}" style="width: 12rem;" class="card-img-bottom m-3" alt="...">
         </div>
         <div class="card m-5">
-
             <h2 class="card-title">Critique</h2>
-            <form method="POST" action="" >
+            <div class="card-body">
+            <form method="POST" action="" class="m2">
                 {{ review_form|crispy }}
                 {% csrf_token %}
                 <div class="button-container">
                     <button type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
             </form>
+                </div>
         </div>
     </div>
 
