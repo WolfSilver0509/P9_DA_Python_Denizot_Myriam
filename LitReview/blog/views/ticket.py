@@ -28,27 +28,19 @@ def supp_ticket(request, pk):
     userpostTodel.delete()
     return redirect("post")
 
-
 @login_required
 def edit_ticket(request, pk):
-    post_to_modify = Ticket.objects.get(id=pk)
-    tickets = Ticket.objects.filter(user_id=request.user.id, id=pk)
+    ticket_to_modify = Ticket.objects.get(id=pk)
+    if ticket_to_modify.user != request.user:
+        return HttpResponseForbidden("Vous n'êtes pas autorisé à modifier ce ticket.")
     if request.method == "GET":
-
-        ticket_form = Ticket_Form(instance=post_to_modify)
+        ticket_form = Ticket_Form(instance=ticket_to_modify)
         return render(
             request=request,
             template_name="blog/edit_ticket.html",
-            context={"ticket_form": ticket_form, "tickets": tickets})
+            context={"ticket_form": ticket_form, "ticket": ticket_to_modify})
     elif request.method == "POST":
-        ticket_form = Ticket_Form(request.POST, request.FILES, initial={
-            "id": post_to_modify.id,
-            "title": post_to_modify.title,
-            "description": post_to_modify.description,
-            "image": post_to_modify.image})
+        ticket_form = Ticket_Form(request.POST, request.FILES, instance=ticket_to_modify)
         if ticket_form.is_valid():
-            post_to_modify.title = ticket_form.cleaned_data.get("title")
-            post_to_modify.description = ticket_form.cleaned_data.get("description")
-            post_to_modify.image = ticket_form.cleaned_data.get("image")
-            post_to_modify.save()
+            ticket_form.save()
         return redirect("post")

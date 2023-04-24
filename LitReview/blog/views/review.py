@@ -55,8 +55,11 @@ def post(request):
 
 @login_required
 def edit_post(request, pk, id_post):
-    post_to_modify = Review.objects.get(id=pk, user_id=request.user.id)
+    post_to_modify = Review.objects.get(id=pk)
     tickets = Ticket.objects.get(id=id_post)
+    if post_to_modify.user != request.user:
+        return HttpResponseForbidden("Vous n'êtes pas autorisé à modifier cette critique.")
+
     if request.method == "GET":
         review_form = Critique_Form(instance=post_to_modify)
         return render(
