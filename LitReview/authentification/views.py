@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.conf import settings
+# from django.conf import settings
 
 # import des fonctions login et authenticate
 from . import forms
-from authentification import forms
 
 
 def logout_user(request):
@@ -39,6 +38,6 @@ def signup_page(request):
         form = forms.SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # login(request, user)
+            login(request, user)
             return redirect("login")
     return render(request, "authentification/signup.html", context={"form": form})

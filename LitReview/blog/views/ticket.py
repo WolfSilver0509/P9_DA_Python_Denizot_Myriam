@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
-from django.db.models import CharField, Value
-from blog.models import Ticket, Review, UserFollows
-from blog.forms import Ticket_Form, Critique_Form, Follow_Form
-from django.db import IntegrityError
-from itertools import chain
-from authentification.models import User
+# from django.db.models import CharField, Value
+from blog.models import Ticket
+from blog.forms import Ticket_Form
+# from django.db import IntegrityError
+# from itertools import chain
+# from authentification.models import User
 
 
 @login_required

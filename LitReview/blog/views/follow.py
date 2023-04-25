@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.decorators import login_required
-from django.db.models import CharField, Value
-from blog.models import Ticket, Review, UserFollows
-from blog.forms import Ticket_Form, Critique_Form, Follow_Form
+# from django.db.models import CharField, Value
+from blog.models import UserFollows
+from blog.forms import Follow_Form
 from django.db import IntegrityError
-from itertools import chain
+# from itertools import chain
 from authentification.models import User
 
 
