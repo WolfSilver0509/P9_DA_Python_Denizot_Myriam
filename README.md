@@ -129,7 +129,7 @@ python manage.py runserver
 
 Entrer l'adresse suivante dans votre navigateur pour accéder au site : http:/127.0.0.1:8000/
 
-Afin de tester les différentes fonctionalités du site, 3 comptes utilisateurs ont été créés : "Peter" mdp : "peterpassword", "Glaxer" mdp : "password" et "Jean" mdp : "jeanpassword".
+Afin de tester les différentes fonctionalités du site, 2 comptes utilisateurs ont été créés : Ulrich et Yumi , le password est le même pour les deux comptes : 'password100'
 
 Pour accéder à l'interface d'administration::
 
