@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect , get_object_or_404
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import CharField, Value
@@ -21,12 +21,18 @@ def ajout_critique(request):
             review_form.save(request.user.id, ticket=ticket)
         return redirect("feed")
 
-    context = {'ticket_form': ticket_form, 'review_form': review_form}
-    return render(request, 'blog/ajout_critique.html', context=context)
+    context = {"ticket_form": ticket_form, "review_form": review_form}
+    return render(request, "blog/ajout_critique.html", context=context)
 
 
 @login_required
 def supp_post(request, pk):
+    # post_to_supp = Review.objects.get(id=pk)
+    post_to_supp = get_object_or_404(Review, pk=pk)
+    if post_to_supp.user != request.user:
+        return HttpResponseForbidden(
+            "Vous n'êtes pas autorisé à supprimer cette critique."
+        )
     userpostTodel = Review.objects.get(id=pk, user_id=request.user.id)
     userpostTodel.delete()
     return redirect("post")
@@ -34,7 +40,8 @@ def supp_post(request, pk):
 
 @login_required
 def creatreview(request, pk):
-    ticket = Ticket.objects.get(id=pk)
+    # ticket = Ticket.objects.get(id=pk)
+    ticket = get_object_or_404(Ticket, pk=pk)
     if request.method == "POST":
         review_form = Critique_Form(request.POST)
         if review_form.is_valid():
@@ -42,36 +49,50 @@ def creatreview(request, pk):
         return redirect("feed")
     else:
         review_form = Critique_Form()
-    context = {'ticket': ticket, 'review_form': review_form}
-    return render(request, 'blog/creatreview.html', context=context)
+    context = {"ticket": ticket, "review_form": review_form}
+    return render(request, "blog/creatreview.html", context=context)
+
 
 @login_required
 def post(request):
-    reviews = Review.objects.filter(user_id=request.user.id).order_by('-time_created')
-    tickets = Ticket.objects.filter(user_id=request.user.id).order_by('-time_created')
+    reviews = Review.objects.filter(user_id=request.user.id).order_by("-time_created")
+    tickets = Ticket.objects.filter(user_id=request.user.id).order_by("-time_created")
 
-    return render(request, "blog/post.html", context={'reviews': reviews, 'tickets': tickets, 'stars': range(1, 5+1)})
+    return render(
+        request,
+        "blog/post.html",
+        context={"reviews": reviews, "tickets": tickets, "stars": range(1, 5 + 1)},
+    )
 
 
 @login_required
 def edit_post(request, pk, id_post):
-    post_to_modify = Review.objects.get(id=pk)
+    # post_to_modify = Review.objects.get(id=pk)
+    post_to_modify = get_object_or_404(Review, pk=pk)
     tickets = Ticket.objects.get(id=id_post)
     if post_to_modify.user != request.user:
-        return HttpResponseForbidden("Vous n'êtes pas autorisé à modifier cette critique.")
+        return HttpResponseForbidden(
+            "Vous n'êtes pas autorisé à modifier cette critique."
+        )
 
     if request.method == "GET":
         review_form = Critique_Form(instance=post_to_modify)
         return render(
             request=request,
             template_name="blog/edit_post.html",
-            context={"review_form": review_form, "tickets": tickets})
+            context={"review_form": review_form, "tickets": tickets},
+        )
     elif request.method == "POST":
-        ticket_form = Critique_Form(request.POST, request.FILES, initial={
-            "id": post_to_modify.id,
-            "rating": post_to_modify.rating,
-            "headline": post_to_modify.headline,
-            "body": post_to_modify.body})
+        ticket_form = Critique_Form(
+            request.POST,
+            request.FILES,
+            initial={
+                "id": post_to_modify.id,
+                "rating": post_to_modify.rating,
+                "headline": post_to_modify.headline,
+                "body": post_to_modify.body,
+            },
+        )
         if ticket_form.is_valid():
             post_to_modify.rating = ticket_form.cleaned_data.get("rating")
             post_to_modify.headline = ticket_form.cleaned_data.get("headline")

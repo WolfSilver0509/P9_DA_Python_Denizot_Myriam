@@ -8,6 +8,7 @@ from django.db import IntegrityError
 from itertools import chain
 from authentification.models import User
 
+
 @login_required
 def abonnements(request):
     error = ""
@@ -17,10 +18,10 @@ def abonnements(request):
     print(userfollows)
     print(followers)
     context = {
-        'userfollows': userfollows,
+        "userfollows": userfollows,
         "followers": followers,
         "form": form,
-        "error": error
+        "error": error,
     }
     if request.method == "POST":
         user_form = Follow_Form(request.POST)
@@ -29,14 +30,14 @@ def abonnements(request):
             if find_user == request.user.username:
                 error = f"{find_user} Vous ne pouvez pas vous suivre vous-même "
                 context.update({"error": error})
-                return render(request, 'blog/abonnements.html', context=context)
+                return render(request, "blog/abonnements.html", context=context)
             else:
                 try:
                     found_user = User.objects.get(username=find_user)
                 except User.DoesNotExist:
                     error = f"{find_user} n'existe pas ! "
                     context.update({"error": error})
-                    return render(request, 'blog/abonnements.html', context=context)
+                    return render(request, "blog/abonnements.html", context=context)
                 try:
                     instance = UserFollows(user=found_user, followed_user=request.user)
                     instance.save()
@@ -47,13 +48,15 @@ def abonnements(request):
                 except IntegrityError:
                     error = f"Vous avez déjà suivi {find_user}"
                     context.update({"error": error})
-                    return render(request, 'blog/abonnements.html', context=context)
-    return render(request, 'blog/abonnements.html', context=context)
+                    return render(request, "blog/abonnements.html", context=context)
+    return render(request, "blog/abonnements.html", context=context)
 
 
 @login_required
 def desabonnement(request, pk):
     userTodel = User.objects.get(username=pk)
-    userFollowstoDel = UserFollows.objects.get(user=userTodel, followed_user=request.user)
+    userFollowstoDel = UserFollows.objects.get(
+        user=userTodel, followed_user=request.user
+    )
     userFollowstoDel.delete()
     return redirect("abonnements")

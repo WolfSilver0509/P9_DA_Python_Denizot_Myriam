@@ -16,28 +16,31 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import authentification.views
-#import review.views
+
+# import review.views
 import blog.views
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', authentification.views.login_page, name='login'),
-    path('logout/', authentification.views.logout_user, name='logout'),
-    path('signup/', authentification.views.signup_page, name='signup'),
-    path('creatreview/<int:pk>', blog.views.creatreview, name='creatreview'),
-    path('post/', blog.views.post, name='post'),
-    path('supp_post/<str:pk>', blog.views.supp_post, name='supp_post'),
-    path('edit_post/<int:pk>/post/<int:id_post>', blog.views.edit_post, name='edit_post'),
-    path('supp_ticket/<str:pk>', blog.views.supp_ticket, name='supp_ticket'),
-    path('edit_ticket/<str:pk>', blog.views.edit_ticket, name='edit_ticket'),
-    path('abonnements/', blog.views.abonnements, name='abonnements'),
-    path('desabonnement/<str:pk>', blog.views.desabonnement, name='desabonnement'),
-    path('ajout_tickets/', blog.views.ajout_tickets, name='ajout_tickets'),
-    path('ajout_critique/', blog.views.ajout_critique, name='ajout_critique'),
-    path('feed/', blog.views.feed, name='feed'),
+    path("admin/", admin.site.urls),
+    path("", authentification.views.login_page, name="login"),
+    path("logout/", authentification.views.logout_user, name="logout"),
+    path("signup/", authentification.views.signup_page, name="signup"),
+    path("creatreview/<int:pk>", blog.views.creatreview, name="creatreview"),
+    path("post/", blog.views.post, name="post"),
+    path("supp_post/<str:pk>", blog.views.supp_post, name="supp_post"),
+    path(
+        "edit_post/<int:pk>/post/<int:id_post>", blog.views.edit_post, name="edit_post"
+    ),
+    path("supp_ticket/<str:pk>", blog.views.supp_ticket, name="supp_ticket"),
+    path("edit_ticket/<str:pk>", blog.views.edit_ticket, name="edit_ticket"),
+    path("abonnements/", blog.views.abonnements, name="abonnements"),
+    path("desabonnement/<str:pk>", blog.views.desabonnement, name="desabonnement"),
+    path("ajout_tickets/", blog.views.ajout_tickets, name="ajout_tickets"),
+    path("ajout_critique/", blog.views.ajout_critique, name="ajout_critique"),
+    path("feed/", blog.views.feed, name="feed"),
 ]
 
 if settings.DEBUG:
