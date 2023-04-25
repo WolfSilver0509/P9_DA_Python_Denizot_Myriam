@@ -142,32 +142,6 @@ Mot de passe: password
 
 
 
-### Générer un rapport Flake8 HTML sur le programme Python :
-
-:point_right: Dans le terminal dans votre dossier :
-```
-(env) C:\Users\wolf\Desktop\LitReview_P9>
-```
-
-:point_right: Pour voir si il y a des erreur de Flake8 :
-```
-(env) C:\Users\wolf\Desktop\LitReview_P9> Flake8
-```
-
-:point_right: Si il n'y a pas d'erreur il ne vous affichera rien et vous aurez de nouveau :
-```
-(env) C:\Users\wolf\Desktop\LitReview_P9> 
-```
-
-:point_right: Pour générer un rapport Flake8 HTML :
-```
-flake8 --format=html --htmldir=flake-report
-```
-:point_right: Celà fait un nouveau dossier nommée "Flake-report" est apparue !
-
-:point_right: Vous pouvez vous rendre dedans et ouvrire dans un navigateur le fichier Index.html 
-
-:point_right:La page s'ouvre , si il vous affiche un bandeau vert avec all Good !  - Tout est bon !!  :
 
 <h3 align="left">Languages and Tools:</h3>
 <p align="left"> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
