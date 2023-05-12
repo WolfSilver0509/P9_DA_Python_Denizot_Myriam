@@ -52,5 +52,5 @@ def edit_ticket(request, pk):
             request.POST, request.FILES, instance=ticket_to_modify
         )
         if ticket_form.is_valid():
-            ticket_form.save()
+            ticket_form.save(user_id = request.user.id)
         return redirect("post")
